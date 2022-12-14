@@ -1,0 +1,15 @@
+﻿@using ShopСlothes.ViewModels
+@model ShopCartViewModel 
+<div>
+	@foreach (var el in Model.shopCart.shopCarItem)//Класс(shopCart) обьект shopCarItem берем данные 
+	{
+		<div class="alert alert-warning mt-3">
+		<h2>Price:@el.car.Price.ToString("c")</h2>
+		<h3>Car:@el.car.Name</h3>
+		</div>
+		
+	}
+	<div class="btn btn-danger" asp-controller="Order">Оплатить</div>
+</div>
+
+

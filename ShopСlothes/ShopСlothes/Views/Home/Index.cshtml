@@ -1,0 +1,45 @@
+﻿@using ShopСlothes.ViewModels
+@*@model CarsListView*@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h3>@Model.cuurCategory</h3>
+<div class="row mt-5 mb-2">
+    @{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        foreach (Car item in Model.GetCars)
+            Html.Partial("AllCarsHtm", item);
+
+        //1-параметр имя который подключаем
+        //2-обьект который передаете
+        //подключаем шаблон
+        //{
+        //    <div class="col-lg-4">
+        //        <h1>Name--></h1>@item.Name
+        //       <img class="img-thubnail" src="@item.Img" alt="@item.Name"/>
+        //       <h2>@item.Name</h2>
+        //        <p>@item.ShortDesc</p>
+        //        <p>Price-></p>@item.Price.ToString("c");
+        //        <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+        //        </div>
+                
+            
+        //}
+    }
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
