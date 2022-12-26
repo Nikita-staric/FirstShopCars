@@ -1,28 +1,15 @@
 ﻿@using ShopСlothes.ViewModels
 @*@model CarsListView*@
+@model HomeViewMode
 @{
     ViewData["Title"] = "Home Page";
 }
-<h3>@Model.cuurCategory</h3>
+<h1>Лучшие автомобили</h1>
 <div class="row mt-5 mb-2">
     @{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        foreach (Car item in Model.GetCars)
-            Html.Partial("AllCarsHtm", item);
+        foreach (Car item in Model.favCar)//перебираем все машини
+            Html.Partial("AllCarsHtm", item);//добавляем шаблончик и передаем каждый раз обьект который надо показать
 
         //1-параметр имя который подключаем
         //2-обьект который передаете

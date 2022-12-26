@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopСlothes.Interface;
+using ShopСlothes.Models;
 using ShopСlothes.ViewModels;
 
 namespace ShopСlothes.Controllers
@@ -15,14 +16,47 @@ namespace ShopСlothes.Controllers
             _allCategory = carsCategory;
             _allCars = allCategory;
         }
-        [HttpGet]
-        public IActionResult Index()
+        [Route("Cars/List")]//при переходи по этому URL адресу функция будет срабатывать
+        [Route("Cars/List/category")]
+        public IActionResult Index(string category)//передаем категорию Электро
         {
+            string _categoy = category;//хранит
+            IEnumerable<Car> cars = null;//помещать все машины 
+            string carrCategory = "";
+            if(string.IsNullOrEmpty(category))//если 3-ий параметр пустой то прийдется все машины вывести   IsNullOrEmpty-пуста или не существует
+            {
+                cars = _allCars.Cars.OrderBy(i=>i.Id);  //если строка пустая выводим все машины
+            }
+            else//если параметр не пустой
+            {
+                //string.Equals если строка ровна слову  electro 2(парметр) какая страка 3(неучитываем регимтр Верхняя буква)
+                if (string.Equals("electro", category,StringComparison.OrdinalIgnoreCase))//надо понять что находится в category
+                {
 
-            CarsListView carsListView = new CarsListView();
-            carsListView.GetCars = _allCars.Cars;//передаем обьект с товарами 
-                                                 //   carsListView.cuurCategory="AVto";
-            return View(carsListView);
+
+                    //Categoryy может тут ошибка категориНаме передать 
+                 cars = _allCars.Cars.Where(i => i.Category.Categoryy.Equals("ЭлектроМобиль")).OrderBy(i => i.Id);
+                    carrCategory = "ЭлектроМобиль";
+                }
+                else if (string.Equals("fuel", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    cars = _allCars.Cars.Where(i => i.Category.Categoryy.Equals("Класические машинны")).OrderBy(i => i.Id);// БУДУТ ПРИНАДЛЕЖАТЬ К ЭЛЕКТРОМОБИЛЯМ 
+                    carrCategory = "Класические машинны";
+                }
+            }
+            //OrderBy сортировка
+            carrCategory = _categoy;//с какой категории работаем
+            var carObject = new CarsListView
+            {
+                GetCars = cars,
+                cuurCategory=carrCategory,
+            };
+
+            ViewBag.Title = "Страница с автомобилями";
+            //CarsListView obj = new CarsListView();
+            //obj.GetCars = _allCars.Cars;//передаем обьект с товарами 
+            //obj.cuurCategory = "Авто";                               //   carsListView.cuurCategory="AVto";
+            return View(carObject);
         }
 
 

@@ -45,15 +45,21 @@ app.UseRouting();
 ////DbObject.Initial(app);//вызиваем функцию
 AppDataContext context;
 //обращаемся к сервысу но он тут
-//using (var score = app. ApplicationServices.CreateScope())//окружить в область ,создание области
-//{
-//    context = score.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
-//    DbObject.Initial(context);//вызиваем функцию
-//}
-//app.UseAuthorization();
+using (var options = ((IApplicationBuilder)app).ApplicationServices.CreateScope())//окружить в область ,создание области
+{
+    context = options.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
+    DbObject.Initial(context);//вызиваем функцию
+}
+app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseMvc(routes =>
+{
+    routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
+    routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default,new {Controller="Car",action="List"});//для электр машин и класика 
+});
+//app.MapControllerRoute(
+//    name: "default",pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name:"categoryFilter",pattern: "Car/{action}/{catogory?}");//для электр машин и класика 
 
 app.Run();

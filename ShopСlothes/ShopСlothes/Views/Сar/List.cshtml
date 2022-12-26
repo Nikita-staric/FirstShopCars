@@ -1,7 +1,12 @@
-﻿
+﻿using ShopСlothes.ViewModels
+@model CarsListView
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "Home Page";
 }
+<h3>@Model.cuurCategory</h3>
+<div class="row mt-5 mb-2">
+    @{
 
-<h1>List</h1>
-
+  foreach (Car item in Model.GetCars)
+            Html.Partial("AllCarsHtm", item);
+            }
