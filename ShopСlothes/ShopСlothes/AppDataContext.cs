@@ -14,6 +14,10 @@ namespace ShopСlothes
         public DbSet<Car> Cars { get; set; }//устанавливает все товары в магазине
         public DbSet<Category> Categories { get; set; }
         public DbSet<ShopCarItem> shopCarItem { get; set; }
+        //регестрируем таблицки 
+
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
 
     }
 

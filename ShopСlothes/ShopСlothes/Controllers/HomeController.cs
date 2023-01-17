@@ -20,7 +20,7 @@ namespace ShopСlothes.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var newArr = new HomeViewMode
+            var newArr = new HomeViewMode 
             {
                 favCar = _allCars.GetFavCar//получить машинки которые ровн труе
             } ;

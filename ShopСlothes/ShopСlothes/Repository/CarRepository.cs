@@ -22,4 +22,5 @@ namespace ShopСlothes.Repository
 
         public Car GetOjectCar(int carId) => appDataContext.Cars.FirstOrDefault(c => c.Id == carId);//берем первый елемент или один елемент ,берем один елемент который равен carId  
     }
+   
 }

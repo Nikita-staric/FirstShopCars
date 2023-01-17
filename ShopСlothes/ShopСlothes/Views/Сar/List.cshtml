@@ -1,4 +1,4 @@
-﻿using ShopСlothes.ViewModels
+﻿@using ShopСlothes.ViewModels
 @model CarsListView
 @{
     ViewData["Title"] = "Home Page";
@@ -10,3 +10,4 @@
   foreach (Car item in Model.GetCars)
             Html.Partial("AllCarsHtm", item);
             }
+            </div>
