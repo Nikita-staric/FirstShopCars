@@ -6,7 +6,37 @@ namespace ShopСlothes
 {
     public class DbObject//будем обращаться
     {
-      
+        public static Dictionary<string, Category> category;
+        public static Dictionary<string, Category> Categoriess
+        {//возвращать данные ,словарь,передаем ключ стринг,2-тип данных для елементов
+            get
+            {
+                if (category == null)//если пуста то добовляем новый обьект
+                {
+                    // если пуста
+                    var list = new Category[]//список 
+                    { //какие категоии будут возращаться 
+                    new Category { Categoryy = "ЭлектроМобиль" , Description ="пушка Ракета"},
+                    new Category { Categoryy = "Класические машинны" ,Description="Хуита"}
+
+                    };
+                    //ВЫДЕЛЯЕМ ПАМИТЬ И ВНУТРЬ ДОБАВЛЯЕМ ВСЕ ЭЛЕМЕНТЫ
+                    category = new Dictionary<string, Category>();
+                    foreach (Category item in list)
+                    {
+                        category.Add(item.Categoryy, item);//добавляем новый  элемент
+                    }
+                }
+                //если есть элементы то возращаем
+                return category;
+
+            }
+        }
+        //  public AppDataContext context;
+        //public DbObject(AppDataContext context)
+        //  {
+        //      this.context = context;
+        //  }
 
         //возращает список
 
@@ -20,19 +50,14 @@ namespace ShopСlothes
             //{
             //    context = score.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
             //}
-
-
-
-
-
-            //    AppDataContext context = app.ApplicationServices.GetRequiredService<AppDataContext>();  //подключени и работа с базой данныx 
+            // var context = app.ApplicationServices.GetRequiredService<AppDataContext>();  //подключени и работа с базой данныx 
             //добавление категорий если нету нечего
             if (!context.Categories.Any())//если их нету
             {
                 context.Categories.AddRange(Categoriess.Select(c => c.Value));//Categoriess брать значение и записывать
             }
             // добавляем обекты товара
-            if (!context.Categories.Any())//если их нету
+            if (context.Categories.Any())//если их нету
             {
                 context.AddRange(
                      new Car
@@ -111,32 +136,7 @@ namespace ShopСlothes
                 context.SaveChanges();
             }
         }
-        public static Dictionary<string, Category> category;
-        public static Dictionary<string, Category> Categoriess
-        {//возвращать данные ,словарь,передаем ключ стринг,2-тип данных для елементов
-            get
-            {
-                if (category == null)//если пуста то добовляем новый обьект
-                {
-                    // если пуста
-                    var list = new Category[]//список 
-                    { //какие категоии будут возращаться 
-                    new Category { Categoryy = "ЭлектроМобиль" , Description ="пушка Ракета"},
-                    new Category { Categoryy = "Класические машинны" ,Description="Хуита"}
-
-                    };
-                    //ВЫДЕЛЯЕМ ПАМИТЬ И ВНУТРЬ ДОБАВЛЯЕМ ВСЕ ЭЛЕМЕНТЫ
-                    category = new Dictionary<string, Category>();
-                    foreach (Category item in list)
-                    {
-                        category.Add(item.Categoryy, item);//добавляем новый  элемент
-                    }
-                }
-                //если есть элементы то возращаем
-                return category;
-
-            }
-        }
+        
 
     }
 }

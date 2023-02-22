@@ -1,0 +1,47 @@
+﻿@model Order
+<h2>Оформление заказа</h2>
+
+
+<form asp-action="CheckOut" method="post" class="form-horizontal">
+	<div class="form-group">
+		<label asp-for="Name"></label>
+		<div class="col-md-5">
+			<input asp-for="Name" class="form-control" />
+			@*если ошибка будет то вывидит ее*@	<span asp-validation-for="Name" class="text-danger"></span>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="SurName"></label>
+		<div class="col-md-5">
+			<input asp-for="SurName" class="form-control" />
+			<span asp-validation-for="SurName" class="text-danger"></span>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="adres"></label>
+		<div class="col-md-5">
+			<input asp-for="adres" class="form-control" />
+			<span asp-validation-for="adres" class="text-danger"></span>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="Phone"></label>
+		<div class="col-md-5">
+			<input asp-for="Phone" class="form-control" />
+			<span asp-validation-for="Phone" class="text-danger"></span>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="email"></label>
+		<div class="col-md-5">
+			<input asp-for="email" class="form-control" />
+			<span asp-validation-for="email" class="text-danger"></span>
+
+		</div>
+	</div>
+</form>
+<input class="btn btn-success" type="sudmit" value="Завершить ауе заказ" />

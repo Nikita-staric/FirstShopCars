@@ -23,8 +23,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/NewPlan/ShopСlothes/ShopСlothes/Views/Order/ChekOut.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ2hla091dC5jc2h0bWw=
+[D:/NewPlan/ShopСlothes/ShopСlothes/Views/OrdelControllers/ChekOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZWxDb250cm9sbGVyc1xDaGVrT3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NewPlan/ShopСlothes/ShopСlothes/Views/OrdelControllers/Complate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZWxDb250cm9sbGVyc1xDb21wbGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NewPlan/ShopСlothes/ShopСlothes/Views/Order/CCheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ0NoZWNrT3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/NewPlan/ShopСlothes/ShopСlothes/Views/Shared/AllCarsHtm.cshtml]

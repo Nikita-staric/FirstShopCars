@@ -14,11 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.json");
 // получаем строку подключения из файла конфигурации
-string connection = builder.Configuration.GetConnectionString("NewConnection");
+//string connection = builder.Configuration.GetConnectionString("NewConnection");
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
+//builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(connection));
+
+string connection = builder.Configuration.GetConnectionString("NewConnection");
+
 builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(connection));
 //builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("NewConnection")));
+
+//builder.Services.AddDbContext(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("NewConnection")); });
 builder.Services.AddTransient<IAllCategory, CarRepository>();
+builder.Services.AddTransient<lalOrdes, OrderRepository>();
+//builder.Services.AddDbContext<AppDataContext>();
+
 builder.Services.AddTransient<ICarsCategory, CategoryRepository>();//связь между ними
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sp =>ShopCart.GetCart(sp));//если два пользователя войдут в корзину и что б у них разные корзины были
@@ -26,7 +35,6 @@ builder.Services.AddScoped(sp =>ShopCart.GetCart(sp));//если два пользователя во
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddMvc();
 builder.Services.AddMvc();
 builder.Services.AddControllers();
 var app = builder.Build();
@@ -42,28 +50,97 @@ app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-////DbObject.Initial(app);//вызиваем функцию
-AppDataContext context;
-//обращаемся к сервысу но он тут
-using (var options = ((IApplicationBuilder)app).ApplicationServices.CreateScope())//окружить в область ,создание области
+
+//void Configuration(IApplicationBuilder aaa)
+//{
+//    aaa.UseStaticFiles();
+//    aaa.UseStatusCodePages();
+//    app.UseAuthorization();
+
+    using (var options = ((IApplicationBuilder)app).ApplicationServices.CreateScope())//окружить в область ,создание области
 {
-    context = options.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
-    DbObject.Initial(context);//вызиваем функцию
+        AppDataContext context = options.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
+        DbObject.Initial(context);//вызиваем функцию
+    }
+ void ConfigureServices(IServiceCollection services)
+{
+    app.UseMvc(routes =>
+    {
+        routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+        // routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
+    });
+
 }
-app.UseAuthorization();
+//app.UseMvc(routes =>
+//{
+//    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+//   // routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
+//});
+
+app.Run();
+
+
+
+
+
+
+
+//IApplicationBuilder apppp=null;
+//var aa= apppp.ApplicationServices.CreateScope()
+/*AppDataContext context*/
+;
+//обращаемся к серв но он т
+// ((IApplicationBuilder)app).ApplicationServices.CreateScope())
+//ут
+
+
+
+
+
+
+
+
+
+//IServiceProvider services=null;
+//using IServiceScope serviceScope = services.CreateScope();
+
+
+
+
+
+
+// var provider = new ServiceCollection()
+//           .AddScoped<AppDataContext>()
+//           .BuildServiceProvider();
+
+//using (var scope = provider.CreateScope())
+//{
+//    var foo = scope.ServiceProvider.GetRequiredService<AppDataContext>();
+//} //
+
+
+//var proveider = new ServiceCollection();
+
+//using (var scope = provider.CreateScope())
+//{
+//    var foo = scope.ServiceProvider.GetRequiredService<AppDataContext>();
+//}
+
+
+
+//using (var options = app.ApplicationServices.CreateScope())//окружить в область ,создание области
+//{
+//    IApplicationBuilder context = (IApplicationBuilder)options.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
+//    DbObject.Initial((IApplicationBuilder)context);//вызиваем функцию
+//}
+//DbObject.Initial(context);//вызиваем функцию
+
 
 //откометить
 
-//app.UseMvc(routes =>
-//{
-//    routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
-//    routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default,new {Controller="Car",action="List"});//для электр машин и класика 
-//});
 
 
 //app.MapControllerRoute(
 //    name: "default",pattern: "{controller=Home}/{action=Index}/{id?}");
 //app.MapControllerRoute(
 //    name:"categoryFilter",pattern: "Car/{action}/{catogory?}");//для электр машин и класика 
-
-app.Run();

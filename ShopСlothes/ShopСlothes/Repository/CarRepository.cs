@@ -7,7 +7,7 @@ namespace ShopСlothes.Repository
     public class CarRepository : IAllCategory
         
     {
-        private readonly AppDataContext appDataContext;//можем брать все данные из базы данных через ссылкуб
+        private readonly AppDataContext appDataContext;//можем брать все данные из базы данных через ссылку
         public CarRepository(AppDataContext appDataContext)
         {
             this.appDataContext = appDataContext;

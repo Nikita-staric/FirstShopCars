@@ -12,8 +12,8 @@ using ShopСlothes;
 namespace ShopСlothes.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20221229112052_YourMigrationName")]
-    partial class YourMigrationName
+    [Migration("20230218213002_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,23 +92,28 @@ namespace ShopСlothes.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("SurName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("adres")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("orderTime")
                         .HasColumnType("datetime2");
@@ -120,17 +125,11 @@ namespace ShopСlothes.Migrations
 
             modelBuilder.Entity("ShopСlothes.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("orderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("orderId"), 1L, 1);
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<long>("Price")
                         .HasColumnType("bigint");
@@ -138,16 +137,14 @@ namespace ShopСlothes.Migrations
                     b.Property<int>("carId")
                         .HasColumnType("int");
 
-                    b.Property<int>("orderId1")
+                    b.Property<int>("orderId")
                         .HasColumnType("int");
 
-                    b.HasKey("orderId");
-
-                    b.HasIndex("OrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("carId");
 
-                    b.HasIndex("orderId1");
+                    b.HasIndex("orderId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -190,21 +187,15 @@ namespace ShopСlothes.Migrations
 
             modelBuilder.Entity("ShopСlothes.Models.OrderDetail", b =>
                 {
-                    b.HasOne("ShopСlothes.Models.Order", null)
-                        .WithMany("orderDetali")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ShopСlothes.Models.Car", "car")
                         .WithMany()
                         .HasForeignKey("carId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopСlothes.Models.OrderDetail", "Order")
+                    b.HasOne("ShopСlothes.Models.Order", "Order")
                         .WithMany("orderDetali")
-                        .HasForeignKey("orderId1")
+                        .HasForeignKey("orderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -230,11 +221,6 @@ namespace ShopСlothes.Migrations
                 });
 
             modelBuilder.Entity("ShopСlothes.Models.Order", b =>
-                {
-                    b.Navigation("orderDetali");
-                });
-
-            modelBuilder.Entity("ShopСlothes.Models.OrderDetail", b =>
                 {
                     b.Navigation("orderDetali");
                 });
