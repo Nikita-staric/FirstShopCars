@@ -62,20 +62,29 @@ app.UseRouting();
         AppDataContext context = options.ServiceProvider.GetRequiredService<AppDataContext>();//какой сервис подключаем
         DbObject.Initial(context);//вызиваем функцию
     }
- void ConfigureServices(IServiceCollection services)
-{
-    app.UseMvc(routes =>
-    {
-        routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-        // routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
-    });
+// void ConfigureServices(IServiceCollection services)
+//{
+//    app.UseMvc(routes =>
+//    {
+//        routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+//        // routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
+//    });
 
-}
+//}
 //app.UseMvc(routes =>
 //{
-//    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-//   // routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
+//  routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+//    routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });//для электр машин и класика 
 //});
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "Car/{action}/{catogory?}",
+//    defaults:new{ Controller = "Car", action = "List" }
+//    ); //} "categoryFilter", template: "Car/{action}/{catogory?}", default, new { Controller = "Car", action = "List" });
+app.MapControllerRoute(
+name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 

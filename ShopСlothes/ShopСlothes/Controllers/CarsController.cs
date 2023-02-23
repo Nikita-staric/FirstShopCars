@@ -49,7 +49,7 @@ namespace ShopСlothes.Controllers
             var carObject = new CarsListView
             {
                 GetCars = cars,
-                cuurCategory=carrCategory,
+                CuurCategory=carrCategory,
             };
 
             ViewBag.Title = "Страница с автомобилями";

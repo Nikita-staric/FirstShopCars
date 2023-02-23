@@ -6,27 +6,33 @@
 }
 <h1>Лучшие автомобили</h1>
 <div class="row mt-5 mb-2">
-    @{
+  @*  @{
 
-        foreach (Car item in Model.favCar)//перебираем все машини
-            Html.Partial("AllCarsHtm", item);//добавляем шаблончик и передаем каждый раз обьект который надо показать
+        foreach (Car item in Model.favCar)
+        {//перебираем все машини
+
+           *@
+            @Html.Partial("AllCarsHtm");
+
+    Html.Partial("AllCarsHtm", item);
+        //добавляем шаблончик и передаем каждый раз обьект который надо показать
 
         //1-параметр имя который подключаем
         //2-обьект который передаете
         //подключаем шаблон
         //{
-        //    <div class="col-lg-4">
-        //        <h1>Name--></h1>@item.Name
-        //       <img class="img-thubnail" src="@item.Img" alt="@item.Name"/>
-        //       <h2>@item.Name</h2>
-        //        <p>@item.ShortDesc</p>
-        //        <p>Price-></p>@item.Price.ToString("c");
-        //        <p><a class="btn btn-warning" href="#">Подробнее</a></p>
-        //        </div>
+         @*   //<div class="col-lg-4">
+            //    <h1>Name--></h1>@item.Name
+            //   <img class="img-thubnail" src="@item.Img" alt="@item.Name"/>
+            //   <h2>@item.Name</h2>
+            //    <p>@item.ShortDesc</p>
+            //    <p>Price-></p>@item.Price.ToString("c");
+            //    <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+            //    </div>
                 
             
-        //}
-    }
+        }
+    }*@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

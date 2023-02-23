@@ -17,7 +17,7 @@ namespace ShopСlothes
                     var list = new Category[]//список 
                     { //какие категоии будут возращаться 
                     new Category { Categoryy = "ЭлектроМобиль" , Description ="пушка Ракета"},
-                    new Category { Categoryy = "Класические машинны" ,Description="Хуита"}
+                    new Category { Categoryy = "Класические машинны" ,Description="На бензине"}
 
                     };
                     //ВЫДЕЛЯЕМ ПАМИТЬ И ВНУТРЬ ДОБАВЛЯЕМ ВСЕ ЭЛЕМЕНТЫ
@@ -57,7 +57,8 @@ namespace ShopСlothes
                 context.Categories.AddRange(Categoriess.Select(c => c.Value));//Categoriess брать значение и записывать
             }
             // добавляем обекты товара
-            if (context.Categories.Any())//если их нету
+            // Categories
+            if (!context.Cars.Any())//если их нету
             {
                 context.AddRange(
                      new Car
@@ -65,7 +66,7 @@ namespace ShopСlothes
                          Name = "Tesla",
                          ShortDesc = "пушка Ракета",
                          LongDesc = "",
-                         Img = "https://www.zr.ru/_ah/img/1E0AP_kAZdE8Nu045JMruQ=h625",
+                         Img = "https://i.auto-bild.de/ir_img/3/0/9/7/9/0/5/210621_AutoBild_-_Tesla_Y-KIA0600-4a2da3605ae40b04.jpg",
                          Price = 45000,
                          IsFavourit = true,
                          //куда принадлежить эта категолия
@@ -75,10 +76,10 @@ namespace ShopСlothes
 
                     new Car
                     {
-                        Name = "BMV",
+                        Name = "BMW",
                         ShortDesc = "салон мне нрав",
                         LongDesc = "BMW - немецкая компания, которая выпускает автомобили и мотоциклы премиум класса. Eе штаб-квартира расположена в городе Мюнхен, а история начинается в 1917 году, когда Карл Рапп и Густав Отто основывают собственный завод по выпуску авиадвигателей Bayerische Motoren Werke – BMW.",
-                        Img = "https://www.zr.ru/_ah/img/1E0AP_kAZdE8Nu045JMruQ=h625",
+                        Img = "https://a.d-cd.net/s0fExNALNXfSwvcG71gM1NTc0Ak-1920.jpg",
                         Price = 8800,
                         IsFavourit = true,
                         Avalible = true,
@@ -91,7 +92,7 @@ namespace ShopСlothes
                          Name = "Ford",
                          ShortDesc = "мусор полный",
                          LongDesc = "В 1920-1930-е годы «Форд Мотор» активно открывает отделения во многих странах мира, в том числе сотрудничает с Советской Россией (создание заводов ГАЗ, АМО). Хотя Генри Форд относился к Октябрьской революции резко отрицательно, тем не менее он считал, что у России большое будущее, если она встанет на путь индустриального развития.",
-                         Img = "https://www.zr.ru/_ah/img/1E0AP_kAZdE8Nu045JMruQ=h625",
+                         Img = "https://www.ford.de/content/dam/guxeu/de/home/billboard/2022/ford-homepage-de-GUX3_Desktop-21x9-2160x925-bb-ranger-ford-orange.jpg.renditions.original.png",
                          Price = 47500,
                          IsFavourit = true,
                          Avalible = true,
@@ -103,7 +104,7 @@ namespace ShopСlothes
                           Name = "Volvo",
                           ShortDesc = "ну хз хз надо подумать",
                           LongDesc = "— концерн, производящий коммерческие и грузовые автомобили, автобусы, двигатели и различное оборудование. Ранее концерн Volvo производил также легковые автомобили, но в 1999 продал своё отделение легковых автомобилей под именем Volvo Personvagnar (Volvo Cars) концерну Ford, который в 2010 году перепродал его концерну Geely.",
-                          Img = "https://www.zr.ru/_ah/img/1E0AP_kAZdE8Nu045JMruQ=h625",
+                          Img = "https://assets.adac.de/image/upload/c_scale,f_auto,q_auto,t_2:1-default,w_1500/v1/ADAC-eV/KOR/Bilder/PR/volvo-xc60-seite-2111_xloomf",
                           Price = 10000,
                           IsFavourit = true,
                           Avalible = true,
@@ -127,7 +128,7 @@ namespace ShopСlothes
                             Name = "Jeep",
                             ShortDesc = "МегаТрак",
                             LongDesc = "по офроуду пойдет а так по городу ну такое",
-                            Img = "https://www.zr.ru/_ah/img/1E0AP_kAZdE8Nu045JMruQ=h625",
+                            Img = "https://www.media.stellantis.com/cache/3/7/1/c/d/371cdaaa1b910fe28518475d2c8cf47193e2855c.jpeg",
                             Price = 20000,
                             IsFavourit = false,
                             Avalible = true,
@@ -138,6 +139,6 @@ namespace ShopСlothes
         }
         
 
-    }
+   }
 }
 

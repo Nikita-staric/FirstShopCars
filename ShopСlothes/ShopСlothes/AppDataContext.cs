@@ -8,7 +8,7 @@ namespace ShopСlothes
 
         public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
         {
-            Database.EnsureDeleted();   // удаляем бд со старой схемойThe property 'OrderDetail.orderDetali' is of type 'List<OrderDetail>' which is not supported by the current database provider. Either change the property CLR type, or ignore the property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'."
+          //  Database.EnsureDeleted();   // удаляем бд со старой схемойThe property 'OrderDetail.orderDetali' is of type 'List<OrderDetail>' which is not supported by the current database provider. Either change the property CLR type, or ignore the property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'."
 
             Database.EnsureCreated();   // создаем бд с новой схемой
         }
